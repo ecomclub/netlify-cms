@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ImmutablePropTypes from 'react-immutable-proptypes';
 import styled from '@emotion/styled';
 import { NetlifyAuthenticator } from 'netlify-cms-lib-auth';
 import { AuthenticationPage, Icon } from 'netlify-cms-ui-default';
@@ -28,8 +27,9 @@ export default class GitHubAuthenticationPage extends React.Component {
     base_url: PropTypes.string,
     siteId: PropTypes.string,
     authEndpoint: PropTypes.string,
-    config: ImmutablePropTypes.map,
+    config: PropTypes.object.isRequired,
     clearHash: PropTypes.func,
+    t: PropTypes.func.isRequired,
   };
 
   state = {};
@@ -75,27 +75,35 @@ export default class GitHubAuthenticationPage extends React.Component {
     };
     const auth = new NetlifyAuthenticator(cfg);
 
-    auth.authenticate({ provider: 'github', scope: 'repo' }, (err, data) => {
+    const {
+      open_authoring: openAuthoring = false,
+      auth_scope: authScope = '',
+    } = this.props.config.backend;
+
+    const scope = authScope || (openAuthoring ? 'public_repo' : 'repo');
+    auth.authenticate({ provider: 'github', scope }, (err, data) => {
       if (err) {
         this.setState({ loginError: err.toString() });
         return;
       }
-      if (this.props.config.getIn(['backend', 'open_authoring'])) {
+      if (openAuthoring) {
         return this.loginWithOpenAuthoring(data).then(() => this.props.onLogin(data));
       }
       this.props.onLogin(data);
     });
   };
 
-  renderLoginButton = () =>
-    this.props.inProgress || this.state.findingFork ? (
-      'Logging in...'
+  renderLoginButton = () => {
+    const { inProgress, t } = this.props;
+    return inProgress || this.state.findingFork ? (
+      t('auth.loggingIn')
     ) : (
       <React.Fragment>
         <LoginButtonIcon type="github" />
-        {' Login with GitHub'}
+        {t('auth.loginWithGitHub')}
       </React.Fragment>
     );
+  };
 
   getAuthenticationPageRenderArgs() {
     const { requestingFork } = this.state;
@@ -124,7 +132,7 @@ export default class GitHubAuthenticationPage extends React.Component {
   }
 
   render() {
-    const { inProgress, config } = this.props;
+    const { inProgress, config, t } = this.props;
     const { loginError, requestingFork, findingFork } = this.state;
 
     return (
@@ -132,8 +140,10 @@ export default class GitHubAuthenticationPage extends React.Component {
         onLogin={this.handleLogin}
         loginDisabled={inProgress || findingFork || requestingFork}
         loginErrorMessage={loginError}
-        logoUrl={config.get('logo_url')}
+        logoUrl={config.logo_url}
+        siteUrl={config.site_url}
         {...this.getAuthenticationPageRenderArgs()}
+        t={t}
       />
     );
   }

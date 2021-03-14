@@ -79,6 +79,8 @@ const colors = {
   controlLabel: '#7a8291',
   checkerboardLight: '#f2f2f2',
   checkerboardDark: '#e6e6e6',
+  mediaDraftText: colorsRaw.purple,
+  mediaDraftBackground: colorsRaw.purpleLight,
 };
 
 const lengths = {
@@ -101,20 +103,29 @@ const transitions = {
 };
 
 const shadows = {
-  drop: css`
+  drop: `
     box-shadow: 0 2px 4px 0 rgba(19, 39, 48, 0.12);
   `,
-  dropMain: css`
+  dropMain: `
     box-shadow: 0 2px 6px 0 rgba(68, 74, 87, 0.05), 0 1px 3px 0 rgba(68, 74, 87, 0.1);
   `,
-  dropMiddle: css`
+  dropMiddle: `
     box-shadow: 0 2px 6px 0 rgba(68, 74, 87, 0.15), 0 1px 3px 0 rgba(68, 74, 87, 0.3);
   `,
-  dropDeep: css`
+  dropDeep: `
     box-shadow: 0 4px 12px 0 rgba(68, 74, 87, 0.15), 0 1px 3px 0 rgba(68, 74, 87, 0.25);
   `,
-  inset: css`
+  inset: `
     box-shadow: inset 0 0 4px rgba(68, 74, 87, 0.3);
+  `,
+};
+
+const text = {
+  fieldLabel: css`
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: ${colors.controlLabel};
   `,
 };
 
@@ -189,6 +200,7 @@ const buttons = {
     padding: 0 24px 0 14px;
   `,
   small: css`
+    font-size: 13px;
     height: 23px;
     line-height: 23px;
   `,
@@ -201,6 +213,10 @@ const buttons = {
       color: ${colorsRaw.white};
       background-color: #555a65;
     }
+  `,
+  grayText: css`
+    background-color: transparent;
+    color: ${colorsRaw.gray};
   `,
   green: css`
     background-color: #aae31f;
@@ -228,16 +244,25 @@ const buttons = {
   `,
 };
 
+const caret = css`
+  color: ${colorsRaw.white};
+  width: 0;
+  height: 0;
+  border: 5px solid transparent;
+  border-radius: 2px;
+`;
+
 const components = {
   card,
   caretDown: css`
-    color: ${colorsRaw.white};
-    width: 0;
-    height: 0;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
+    ${caret};
     border-top: 6px solid currentColor;
-    border-radius: 2px;
+    border-bottom: 0;
+  `,
+  caretRight: css`
+    ${caret};
+    border-left: 6px solid currentColor;
+    border-right: 0;
   `,
   badge: css`
     ${backgroundBadge};
@@ -306,21 +331,29 @@ const components = {
     color: ${colorsRaw.gray};
     font-weight: 500;
     border-bottom: 1px solid #eaebf1;
-    padding: 10px 14px;
+    padding: 8px 14px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    min-width: max-content;
 
     &:last-of-type {
       border-bottom: 0;
     }
 
+    &.active,
     &:hover,
     &:active,
     &:focus {
       color: ${colors.active};
       background-color: ${colors.activeBackground};
     }
+  `,
+  viewControlsText: css`
+    font-size: 14px;
+    color: ${colors.text};
+    margin-right: 12px;
+    white-space: nowrap;
   `,
 };
 
@@ -340,7 +373,7 @@ const reactSelectStyles = {
       : 'transparent',
     paddingLeft: '22px',
   }),
-  menu: styles => ({ ...styles, right: 0, zIndex: 2 }),
+  menu: styles => ({ ...styles, right: 0, zIndex: zIndex.zIndex300 }),
   container: styles => ({ ...styles, padding: '0 !important' }),
   indicatorSeparator: (styles, state) =>
     state.hasValue && state.selectProps.isClearable
@@ -367,93 +400,109 @@ const reactSelectStyles = {
   }),
 };
 
-const GlobalStyles = () => (
-  <Global
-    styles={css`
-      *,
-      *:before,
-      *:after {
-        box-sizing: border-box;
-      }
+const zIndex = {
+  zIndex0: 0,
+  zIndex1: 1,
+  zIndex2: 2,
+  zIndex10: 10,
+  zIndex100: 100,
+  zIndex200: 200,
+  zIndex299: 299,
+  zIndex300: 300,
+  zIndex1000: 1000,
+  zIndex10000: 10000,
+  zIndex99999: 99999,
+};
 
-      :focus {
-        outline: -webkit-focus-ring-color auto ${lengths.borderRadius};
-      }
+function GlobalStyles() {
+  return (
+    <Global
+      styles={css`
+        *,
+        *:before,
+        *:after {
+          box-sizing: border-box;
+        }
 
-      /**
+        :focus {
+          outline: -webkit-focus-ring-color auto ${lengths.borderRadius};
+        }
+
+        /**
        * Don't show outlines if the user is utilizing mouse rather than keyboard.
        */
-      [data-whatintent='mouse'] *:focus {
-        outline: none;
-      }
+        [data-whatintent='mouse'] *:focus {
+          outline: none;
+        }
 
-      input {
-        border: 0;
-      }
+        input {
+          border: 0;
+        }
 
-      body {
-        font-family: ${fonts.primary};
-        font-weight: normal;
-        background-color: ${colors.background};
-        color: ${colors.text};
-        margin: 0;
-      }
+        body {
+          font-family: ${fonts.primary};
+          font-weight: normal;
+          background-color: ${colors.background};
+          color: ${colors.text};
+          margin: 0;
+        }
 
-      ul,
-      ol {
-        padding-left: 0;
-      }
+        ul,
+        ol {
+          padding-left: 0;
+        }
 
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6,
-      p {
-        font-family: ${fonts.primary};
-        color: ${colors.textLead};
-        font-size: 15px;
-        line-height: 1.5;
-        margin-top: 0;
-      }
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        p {
+          font-family: ${fonts.primary};
+          color: ${colors.textLead};
+          font-size: 15px;
+          line-height: 1.5;
+          margin-top: 0;
+        }
 
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6 {
-        font-weight: 500;
-      }
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+          font-weight: 500;
+        }
 
-      h1 {
-        font-size: 24px;
-        letter-spacing: 0.4px;
-        color: ${colors.textLead};
-      }
+        h1 {
+          font-size: 24px;
+          letter-spacing: 0.4px;
+          color: ${colors.textLead};
+        }
 
-      a,
-      button {
-        font-size: 14px;
-        font-weight: 500;
-      }
+        a,
+        button {
+          font-size: 14px;
+          font-weight: 500;
+        }
 
-      a {
-        color: ${colors.text};
-        text-decoration: none;
-      }
+        a {
+          color: ${colors.text};
+          text-decoration: none;
+        }
 
-      img {
-        max-width: 100%;
-      }
+        img {
+          max-width: 100%;
+        }
 
-      textarea {
-        resize: none;
-      }
-    `}
-  />
-);
+        textarea {
+          resize: none;
+        }
+      `}
+    />
+  );
+}
 
 export {
   fonts,
@@ -462,10 +511,12 @@ export {
   lengths,
   components,
   buttons,
+  text,
   shadows,
   borders,
   transitions,
   effects,
+  zIndex,
   reactSelectStyles,
   GlobalStyles,
 };

@@ -1,28 +1,13 @@
 import React from 'react';
-import Helmet from 'react-helmet';
+import { Helmet } from 'react-helmet';
 import { graphql } from 'gatsby';
 import { trimStart, trimEnd } from 'lodash';
 
 import TwitterMeta from '../components/twitter-meta';
 import Layout from '../components/layout';
+import BlogPostTemplate from '../components/blog-post-template';
 
-export const BlogPostTemplate = ({ title, author, date, body, html }) => (
-  <div className="docs page">
-    <div className="container">
-      <article className="blog-content" id="blog-content">
-        <div className="blog-post-header">
-          <h1>{title}</h1>
-          <p className="meta-info">
-            by {author} on {date}
-          </p>
-        </div>
-        {body ? body : <div dangerouslySetInnerHTML={{ __html: html }} />}
-      </article>
-    </div>
-  </div>
-);
-
-const BlogPost = ({ data }) => {
+function BlogPost({ data }) {
   const { html, frontmatter } = data.markdownRemark;
   const {
     author,
@@ -50,7 +35,7 @@ const BlogPost = ({ data }) => {
       <BlogPostTemplate title={title} author={author} date={date} html={html} />
     </Layout>
   );
-};
+}
 
 export default BlogPost;
 

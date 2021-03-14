@@ -1,10 +1,10 @@
 ---
 title: Contributor Guide
 weight: 20
-group: contributing
+group: Contributing
 ---
 
-We're hoping that Netlify CMS will do for the [JAMstack](https://www.jamstack.org) what WordPress did for dynamic sites back in the day. We know we can't do that without building a thriving community of contributors and users, and we'd love to have you join us.
+We're hoping that Netlify CMS will do for the [Jamstack](https://www.jamstack.org) what WordPress did for dynamic sites back in the day. We know we can't do that without building a thriving community of contributors and users, and we'd love to have you join us.
 
 ## Getting started with contributing
 Being a developer is not a requirement for contributing to Netlify CMS, you only need the desire, a web browser, and a [GitHub account](https://github.com/join). The GitHub repo has a step-by-step [guide](https://github.com/netlify/netlify-cms/blob/master/CONTRIBUTING.md) to get started with the code.
@@ -29,7 +29,7 @@ If you are able to offer up a change to existing content, we welcome this. Once 
 While we work on building this page (and you can help!), here are some links with more information about getting involved:
 
 * [Setup instructions and Contribution Guidelines](https://github.com/netlify/netlify-cms/blob/master/CONTRIBUTING.md)
-* [Join us on Gitter](https://gitter.im/netlify/NetlifyCMS)
+* [Join our Community Chat](https://netlifycms.org/chat)
 * [Code of Conduct](https://github.com/netlify/netlify-cms/blob/master/CODE_OF_CONDUCT.md)
 * [Project Milestones](https://github.com/netlify/netlify-cms/milestones)
 * [Good First Issues](https://github.com/netlify/netlify-cms/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc+label%3A%22good+first+issue%22+-label%3Aclaimed)

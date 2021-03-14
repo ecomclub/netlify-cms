@@ -3,6 +3,101 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/netlify/netlify-cms/tree/master/packages/netlify-cms-lib-auth/compare/netlify-cms-lib-auth@2.2.12...netlify-cms-lib-auth@2.3.0) (2020-11-26)
+
+
+### Features
+
+* add azure devops backend ([#4427](https://github.com/netlify/netlify-cms/tree/master/packages/netlify-cms-lib-auth/issues/4427)) ([4e6dc88](https://github.com/netlify/netlify-cms/tree/master/packages/netlify-cms-lib-auth/commit/4e6dc88efb1dae4cf6137730c3b4fb6d0f75a8cc))
+
+
+
+
+
+## [2.2.12](https://github.com/netlify/netlify-cms/tree/master/packages/netlify-cms-lib-auth/compare/netlify-cms-lib-auth@2.2.11...netlify-cms-lib-auth@2.2.12) (2020-09-15)
+
+**Note:** Version bump only for package netlify-cms-lib-auth
+
+
+
+
+
+## 2.2.11 (2020-09-08)
+
+
+### Reverts
+
+* Revert "chore(release): publish" ([828bb16](https://github.com/netlify/netlify-cms/tree/master/packages/netlify-cms-lib-auth/commit/828bb16415b8c22a34caa19c50c38b24ffe9ceae))
+
+
+
+
+
+## 2.2.10 (2020-08-20)
+
+
+### Reverts
+
+* Revert "chore(release): publish" ([8262487](https://github.com/netlify/netlify-cms/tree/master/packages/netlify-cms-lib-auth/commit/82624879ccbcb16610090041db28f00714d924c8))
+
+
+
+
+
+## 2.2.9 (2020-07-27)
+
+
+### Reverts
+
+* Revert "chore(release): publish" ([118d50a](https://github.com/netlify/netlify-cms/tree/master/packages/netlify-cms-lib-auth/commit/118d50a7a70295f25073e564b5161aa2b9883056))
+
+
+
+
+
+## [2.2.8](https://github.com/netlify/netlify-cms/tree/master/packages/netlify-cms-lib-auth/compare/netlify-cms-lib-auth@2.2.7...netlify-cms-lib-auth@2.2.8) (2020-04-01)
+
+**Note:** Version bump only for package netlify-cms-lib-auth
+
+
+
+
+
+## [2.2.7](https://github.com/netlify/netlify-cms/tree/master/packages/netlify-cms-lib-auth/compare/netlify-cms-lib-auth@2.2.6...netlify-cms-lib-auth@2.2.7) (2020-01-14)
+
+**Note:** Version bump only for package netlify-cms-lib-auth
+
+
+
+
+
+## [2.2.6](https://github.com/netlify/netlify-cms/tree/master/packages/netlify-cms-lib-auth/compare/netlify-cms-lib-auth@2.2.6-beta.0...netlify-cms-lib-auth@2.2.6) (2019-12-18)
+
+**Note:** Version bump only for package netlify-cms-lib-auth
+
+
+
+
+
+## [2.2.6-beta.0](https://github.com/netlify/netlify-cms/tree/master/packages/netlify-cms-lib-auth/compare/netlify-cms-lib-auth@2.2.5...netlify-cms-lib-auth@2.2.6-beta.0) (2019-12-02)
+
+
+### Bug Fixes
+
+* pass auth type in authURL to be used in identity widget ([#2920](https://github.com/netlify/netlify-cms/tree/master/packages/netlify-cms-lib-auth/issues/2920)) ([87b4d0f](https://github.com/netlify/netlify-cms/tree/master/packages/netlify-cms-lib-auth/commit/87b4d0f7657df83ba25a9d4ab23b878dc3324b86))
+
+
+
+
+
+## [2.2.5](https://github.com/netlify/netlify-cms/tree/master/packages/netlify-cms-lib-auth/compare/netlify-cms-lib-auth@2.2.4...netlify-cms-lib-auth@2.2.5) (2019-11-18)
+
+**Note:** Version bump only for package netlify-cms-lib-auth
+
+
+
+
+
 ## [2.2.4](https://github.com/netlify/netlify-cms/tree/master/packages/netlify-cms-lib-auth/compare/netlify-cms-lib-auth@2.2.3...netlify-cms-lib-auth@2.2.4) (2019-07-24)
 
 **Note:** Version bump only for package netlify-cms-lib-auth

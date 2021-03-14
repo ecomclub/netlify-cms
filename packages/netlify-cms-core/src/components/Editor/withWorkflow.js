@@ -7,14 +7,14 @@ import { loadUnpublishedEntry, persistUnpublishedEntry } from 'Actions/editorial
 
 function mapStateToProps(state, ownProps) {
   const { collections } = state;
-  const isEditorialWorkflow = state.config.get('publish_mode') === EDITORIAL_WORKFLOW;
+  const isEditorialWorkflow = state.config.publish_mode === EDITORIAL_WORKFLOW;
   const collection = collections.get(ownProps.match.params.name);
   const returnObj = {
     isEditorialWorkflow,
     showDelete: !ownProps.newEntry && selectAllowDeletion(collection),
   };
   if (isEditorialWorkflow) {
-    const slug = ownProps.match.params.slug;
+    const slug = ownProps.match.params[0];
     const unpublishedEntry = selectUnpublishedEntry(state, collection.get('name'), slug);
     if (unpublishedEntry) {
       returnObj.unpublishedEntry = true;

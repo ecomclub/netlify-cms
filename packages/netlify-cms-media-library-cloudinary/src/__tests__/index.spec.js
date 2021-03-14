@@ -1,4 +1,4 @@
-import { queryHelpers, waitForElement } from 'dom-testing-library';
+import { queryHelpers, waitForElement } from '@testing-library/dom';
 import cloudinary from '../index';
 
 describe('cloudinary media library', () => {
@@ -144,6 +144,17 @@ Object {
       };
       await cloudinary.init({ options, handleInsert });
       cloudinaryInsertHandler({ assets: [asset, asset] });
+      expect(handleInsert).toHaveBeenCalledWith(expect.any(Array));
+    });
+
+    it('calls insert function with array when only one asset is returned and config.multiple is true', async () => {
+      const options = {
+        config: {
+          multiple: true,
+        },
+      };
+      await cloudinary.init({ options, handleInsert });
+      cloudinaryInsertHandler({ assets: [asset] });
       expect(handleInsert).toHaveBeenCalledWith(expect.any(Array));
     });
 

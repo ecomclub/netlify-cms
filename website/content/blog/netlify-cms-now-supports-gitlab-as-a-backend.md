@@ -5,13 +5,13 @@ description: >-
   Netlify CMS, the open source, headless CMS that provides a user-friendly UI
   around your Git repository, can now be used with GitLab in addition to
   GitHub.
-date: '2018-06-13'
+date: 2018-06-13T00:00:10.000Z
 ---
 Netlify CMS is releasing support for GitLab as a backend, creating the world's first completely open source stack for Git-based content editing.
 
 <iframe width="100%" height="400" src="https://www.youtube.com/embed/ZrM3U0z8Sks?autoplay=1&loop=1&playlist=ZrM3U0z8Sks&mute=1&controls=0&modestbranding=1&showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
-We heard [you](https://github.com/netlify/netlify-cms/pull/517#issuecomment-383283557) (and [you](https://github.com/netlify/netlify-cms/pull/517#issuecomment-355386542), and [you](https://github.com/netlify/netlify-cms/pull/517#issuecomment-343569725), and [you](https://github.com/netlify/netlify-cms/pull/517#issuecomment-333629637))! While you want to use Netlify CMS as the headless content management system for your JAMstack projects, all of your code lives in GitLab. Our long-term vision is to be tool-agnostic so you can use whatever tool helps you work best. But while you can already use Netlify CMS with most static site generators, backend support was limited to GitHub.
+We heard [you](https://github.com/netlify/netlify-cms/pull/517#issuecomment-383283557) (and [you](https://github.com/netlify/netlify-cms/pull/517#issuecomment-355386542), and [you](https://github.com/netlify/netlify-cms/pull/517#issuecomment-343569725), and [you](https://github.com/netlify/netlify-cms/pull/517#issuecomment-333629637))! While you want to use Netlify CMS as the headless content management system for your Jamstack projects, all of your code lives in GitLab. Our long-term vision is to be tool-agnostic so you can use whatever tool helps you work best. But while you can already use Netlify CMS with most static site generators, backend support was limited to GitHub.
 
 Immediately after the December release of Netlify CMS 1.0, contributors got to work on improving the API for backend integrations. At the urging of the community, we prioritized support for GitLab. With today’s release of Netlify CMS 1.9.0, you can now use GitLab as the backend for Netlify CMS.
 
@@ -29,4 +29,4 @@ Lastly, one particularly exciting thing about using GitLab as your backend is th
 
 ## What’s next
 
-We’re already working toward [Bitbucket](https://github.com/netlify/netlify-cms/pull/525) support and will be releasing it as soon as possible! We’re also focused on the upcoming release of [Netlify CMS 2.0](https://github.com/netlify/netlify-cms/issues/1280), which will bring new image handling features and improvements, and improved APIs for better CMS extensions. We’re also looking for more ideas and helping hands, so if you’re keen to build a smarter, safer, and more scalable CMS, we’d love your contributions. Give us a shout on [Twitter](https://twitter.com/netlifycms) or Gitter if you have questions or ideas.
+We’re already working toward [Bitbucket](https://github.com/netlify/netlify-cms/pull/525) support and will be releasing it as soon as possible! We’re also focused on the upcoming release of [Netlify CMS 2.0](https://github.com/netlify/netlify-cms/issues/1280), which will bring new image handling features and improvements, and improved APIs for better CMS extensions. We’re also looking for more ideas and helping hands, so if you’re keen to build a smarter, safer, and more scalable CMS, we’d love your contributions. Give us a shout on [Twitter](https://twitter.com/netlifycms) or in [community chat](/chat) if you have questions or ideas.

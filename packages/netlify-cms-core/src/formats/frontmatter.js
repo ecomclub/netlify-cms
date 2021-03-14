@@ -13,10 +13,7 @@ const parsers = {
       let JSONinput = input.trim();
       // Fix JSON if leading and trailing brackets were trimmed.
       if (JSONinput.substr(0, 1) !== '{') {
-        JSONinput = '{' + JSONinput;
-      }
-      if (JSONinput.substr(-1) !== '}') {
-        JSONinput = JSONinput + '}';
+        JSONinput = '{' + JSONinput + '}';
       }
       return jsonFormatter.fromFile(JSONinput);
     },
@@ -31,7 +28,8 @@ const parsers = {
   },
   yaml: {
     parse: input => yamlFormatter.fromFile(input),
-    stringify: (metadata, { sortedKeys }) => yamlFormatter.toFile(metadata, sortedKeys),
+    stringify: (metadata, { sortedKeys, comments }) =>
+      yamlFormatter.toFile(metadata, sortedKeys, comments),
   },
 };
 
@@ -53,12 +51,13 @@ function inferFrontmatterFormat(str) {
   }
 }
 
-export const getFormatOpts = format =>
-  ({
+export function getFormatOpts(format) {
+  return {
     yaml: { language: 'yaml', delimiters: '---' },
     toml: { language: 'toml', delimiters: '+++' },
     json: { language: 'json', delimiters: ['{', '}'] },
-  }[format]);
+  }[format];
+}
 
 class FrontmatterFormatter {
   constructor(format, customDelimiter) {
@@ -70,25 +69,46 @@ class FrontmatterFormatter {
     const format = this.format || inferFrontmatterFormat(content);
     if (this.customDelimiter) this.format.delimiters = this.customDelimiter;
     const result = matter(content, { engines: parsers, ...format });
+    // in the absent of a body when serializing an entry we use an empty one
+    // when calling `toFile`, so we don't want to add it when parsing.
     return {
       ...result.data,
-      body: result.content,
+      ...(result.content.trim() && { body: result.content }),
     };
   }
 
-  toFile(data, sortedKeys) {
+  toFile(data, sortedKeys, comments = {}) {
     const { body = '', ...meta } = data;
 
     // Stringify to YAML if the format was not set
     const format = this.format || getFormatOpts('yaml');
     if (this.customDelimiter) this.format.delimiters = this.customDelimiter;
 
+    // gray-matter always adds a line break at the end which trips our
+    // change detection logic
+    // https://github.com/jonschlinkert/gray-matter/issues/96
+    const trimLastLineBreak = body.slice(-1) !== '\n' ? true : false;
     // `sortedKeys` is not recognized by gray-matter, so it gets passed through to the parser
-    return matter.stringify(body, meta, { engines: parsers, sortedKeys, ...format });
+    const file = matter.stringify(body, meta, {
+      engines: parsers,
+      sortedKeys,
+      comments,
+      ...format,
+    });
+    return trimLastLineBreak && file.slice(-1) === '\n' ? file.substring(0, file.length - 1) : file;
   }
 }
 
 export const FrontmatterInfer = new FrontmatterFormatter();
-export const frontmatterYAML = customDelimiter => new FrontmatterFormatter('yaml', customDelimiter);
-export const frontmatterTOML = customDelimiter => new FrontmatterFormatter('toml', customDelimiter);
-export const frontmatterJSON = customDelimiter => new FrontmatterFormatter('json', customDelimiter);
+
+export function frontmatterYAML(customDelimiter) {
+  return new FrontmatterFormatter('yaml', customDelimiter);
+}
+
+export function frontmatterTOML(customDelimiter) {
+  return new FrontmatterFormatter('toml', customDelimiter);
+}
+
+export function frontmatterJSON(customDelimiter) {
+  return new FrontmatterFormatter('json', customDelimiter);
+}

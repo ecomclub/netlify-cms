@@ -1,19 +1,20 @@
 ---
 title: Open Authoring
-group: features
+group: Workflow
+weight: 20
 ---
 
 **This is a [beta feature](/docs/beta-features#open-authoring).**
 
-When using the [GitHub backend](/docs/authentication-backends/#github-backend), you can use Netlify CMS to accept contributions from GitHub users without giving them access to your repository. When they make changes in the CMS, the CMS forks your repository for them behind the scenes, and all the changes are made to the fork. When the contributor is ready to submit their changes, they can set their draft as ready for review in the CMS. This triggers a pull request to your repository, which you can merge using the GitHub UI.
+When using the [GitHub backend](/docs/github-backend), you can use Netlify CMS to accept contributions from GitHub users without giving them access to your repository. When they make changes in the CMS, the CMS forks your repository for them behind the scenes, and all the changes are made to the fork. When the contributor is ready to submit their changes, they can set their draft as ready for review in the CMS. This triggers a pull request to your repository, which you can merge using the GitHub UI.
 
 At the same time, any contributors who _do_ have write access to the repository can continue to use Netlify CMS normally.
 
 ## Requirements
 
-- You must use [the GitHub backend](/docs/authentication-backends/#github-backend).
+- You must use [the GitHub backend](/docs/github-backend).
 
-  **Note that the [Git Gateway backend](/docs/authentication-backends/#git-gateway-with-netlify-identity) does _not_ support Open Authoring, even when the underlying repo is on GitHub.**
+  **Note that the [Git Gateway backend](/docs/git-gateway-backend/#git-gateway-with-netlify-identity) does _not_ support Open Authoring, even when the underlying repo is on GitHub.**
 
 - Your repo on GitHub must be public.
 
@@ -47,3 +48,24 @@ Users who _do_ have write access to the original repository continue to use the 
 - Users don't need to know about GitHub or create a GitHub account. Instead, they use Netlify Identity accounts that are created on your site and managed by you.
 - The CMS applies users' changes directly to your repo, not to a fork. (If you use the editorial workflow, you can use features like [GitHub's protected branches](https://help.github.com/en/articles/about-protected-branches) or [Netlify's locked deploys](https://www.netlify.com/docs/locked-deploys/) to prevent users from publishing directly to your site from the CMS.)
 - There is no distinction between users with write access to the repo and users without — all editorial workflow entries are visible from within the CMS and can be published with the CMS. (Unpublished Open Authoring entries, on the other hand, are visible only to the author in the CMS UI or publicly as GitHub PRs.)
+
+## Linking to specific entries in the CMS
+Open authoring often includes some sort of "Edit this page" link on the live site. Netlify CMS supports this via the **edit** path:
+
+```js
+/#/edit/{collectionName}/{entryName}
+```
+
+For the entry named "general" in the "settings" file collection
+```html
+https://www.example.com/path-to-cms/#/edit/settings/general
+```
+
+For blog post "test.md" in the "posts" folder collection
+```html
+https://www.example.com/path-to-cms/#/edit/posts/test
+```
+
+- **`collectionName`**: the name of the collection as entered in the CMS config.
+- **`entryName`** _(for [file collections](/docs/collection-types/#file-collections)_: the `name` of the entry from the CMS config.
+- **`entryName`** _(for [folder collections](/docs/collection-types/#folder-collections)_: the filename, sans extension (the slug).

@@ -1,7 +1,7 @@
 ---
 title: Widgets
-weight: 30
-group: reference
+group: Fields
+weight: 10
 ---
 
 Widgets define the data type and interface for entry fields. Netlify CMS comes with several built-in widgets. Click the widget names in the sidebar to jump to specific widget details. We’re always adding new widgets, and you can also [create your own](../custom-widgets)!
@@ -23,7 +23,7 @@ The following options are available on all fields:
         - label: "Title"
           name: "title"
           widget: "string"
-          pattern: [".{12,}", "Must have at least 12 characters"]
+          pattern: ['.{12,}', "Must have at least 12 characters"]
         ```
 
 ## Default widgets

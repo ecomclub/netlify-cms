@@ -1,8 +1,17 @@
-# Netlify CMS
-[![Gitter Chat](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/netlify/netlifycms)
+![Netlify CMS](cms.png)
+
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/netlify/netlify-cms/blob/master/LICENSE) [![Netlify Status](https://api.netlify.com/api/v1/badges/2cfc19a8-1216-4070-bbb4-4a1c38b57132/deploy-status)](https://app.netlify.com/sites/cms-demo/deploys) [![npm version](https://img.shields.io/npm/v/netlify-cms.svg?style=flat)](https://www.npmjs.com/package/netlify-cms) [![Build Status](https://github.com/netlify/netlify-cms/workflows/Node%20CI/badge.svg)](https://github.com/netlify/netlify-cms/actions?query=branch%3Amaster+workflow%3A%22Node+CI%22) ![FOSSA Status](https://app.fossa.com/api/projects/custom%2B17679%2Fgit%40github.com%3Anetlify%2Fnetlify-cms.git.svg?type=shield) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/netlify/netlify-cms/blob/master/CONTRIBUTING.md)
+
+[netlifycms.org](https://www.netlifycms.org/) 
 
 A CMS for static site generators. Give users a simple way to edit
 and add content to any site built with a static site generator.
+
+## Community Chat
+
+<a href="https://netlifycms.org/chat">
+  <img alt="Join us on Slack" src="https://raw.githubusercontent.com/netlify/netlify-cms/master/website/static/img/slack.png" width="165"/>
+</a>
 
 ## How It Works
 
@@ -22,13 +31,9 @@ Read more about Netlify CMS [Core Concepts](https://www.netlifycms.org/docs/intr
 
 The Netlify CMS can be used in two different ways.
 
-* A Quick and easy install, that requires you to create a single HTML file and a configuration file. All the CMS Javascript and CSS are loaded from a CDN.
+* A Quick and easy install, that requires you to create a single HTML file and a configuration file. All the CMS JavaScript and CSS are loaded from a CDN.
   To learn more about this installation method, refer to the [Quick Start Guide](https://www.netlifycms.org/docs/quick-start/)
 * A complete, more complex install, that gives you more flexibility but requires that you use a static site builder with a build system that supports npm packages.
-
-# Community
-
-Netlify CMS has a [Gitter community](https://gitter.im/netlify/netlifycms) where members of the community hang out and share things about the project, as well as give and receive support.
 
 # Contributing
 
